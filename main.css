@@ -1,0 +1,72 @@
+body{
+	background-image: url(http://www.timmgolf.com/range%203.jpg);
+}
+.social-media-links{
+
+	list-style-type: none;
+}
+.btn-facebook{
+	background-image: url(../img/icon-facebook.png);
+}
+
+.btn-twitter{
+	background-image: url(../img/icon-twitter.png);
+}
+
+
+.mainNav{
+	
+	width: 200px;
+	
+	/*background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6E_Ub-TPaoXxa-hJkb49XkGd2EWeToW-qEaOC2DOvY9bq5BGvoQ);*/
+	background-color: rgba(0,0,0,.2);
+	border-radius: 10px;
+	margin: 50px auto;	
+}
+
+
+.mainButton{
+	border: 2px solid rgba(0,0,51,1);
+	width: 200px;
+	padding: 20px;
+	border-radius: 10px;
+	textalign: center;
+	vertical-align: middle;
+}
+
+h2{
+
+	color: rgba(255, 101, 43,1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer{
+	background-color: rgba(0,0,51,.6);
+	
+	border: 2px solid rgba(0,0,51,1);
+	margin-right: auto;
+	margin-left:auto;
+	text-align: center;
+	color: rgba(255, 101, 43,1);
+}
+
+
+
+
+
