@@ -23,12 +23,11 @@
 				$("#newGolf").text("New Golf Session");
 			}
 		);
+
 		var sessions = [];
 
-		
-
 		$("#newGolf").click(function(){
-			var session = {scores:[]};
+			var session = {scores:[]};   //*****pushing object onto array ****//
 			sessions.push(session);
 			$('#start').removeAttr('disabled');
 
@@ -43,6 +42,7 @@
 
 			setTimeout(function (){
 				$('#stop').removeAttr('disabled');
+				$('#end').removeAttr('disabled');
 			},1000);
 		});
 		$("#stop").click(function(){
@@ -53,18 +53,48 @@
 			console.log(ballLocation);
 			var flagLocation = $('.flagPole').offset().left;
 			console.log(flagLocation);
-			distFromPin = Math.abs(ballLocation-flagLocation);
-			console.log(distFromPin);
-		
-		
-		// $("#stop").click(function(){
-			sessions[sessions.length-1].scores.push(distFromPin);
-		// });
-		var currentSession = sessions[sessions.length-1];
-		console.log(sessions);
-		});
+			distFromPinCalc= Math.abs(ballLocation-flagLocation);
+			console.log("dfpc", distFromPinCalc);
+			var random = function (min,max){
+				 return Math.random() * (max - min) + min;
+			}
 
-// var scores =[];
+
+			var pxRanges = [25,50,100,150,200,250,300,350,400];
+			var dRanges	=	[325,250,200,150,100,80,60,40,20,10];
+			
+			distFromPin= function(){
+				for  (var i=0; i<pxRanges.length; i++){
+							if(distFromPinCalc < pxRanges[i]){
+								var max = dRanges[i];
+								var min = dRanges[i +1];
+								return Math.floor(Math.random() * (max - min) + min);
+							}
+
+				};
+				return Math.floor(Math.random() * (20 - 10) + 10);
+			};
+
+
+			console.log("function return", distFromPin());
+		
+		
+			//each time the stop button is clicked this code will push the value calculated to the scores property of this object
+			sessions[sessions.length-1].scores.push(distFromPin()); ///***pushing to Sessions Here
+		
+			var currentSession = sessions[sessions.length-1];
+			console.log(sessions);
+			});
+
+$("#end").click(function(){
+	var y = sessions[sessions.length-1].scores.join(', ');
+	// console.log('y', y);
+	// var z = y.scores[0];
+	// console.log('z', z);
+
+$('.resultsContainer').append("<h2>Session " + sessions.length + "</h2>");
+$(".resultsContainer").append('<p>' + y + '</p>');
+});
 
 	});
 </script>
@@ -105,6 +135,7 @@ body{
 	margin-left: 10px;
 	float:left;
 	clear:left;
+	/*display:inline-block;*/
 }
 
 
@@ -133,11 +164,26 @@ body{
 
 }
 
+#end{
+/*	width:100px;*/
+	margin-top: 10px;
+	border-radius: 20px;
+	color: purple;
+
+}
+
 #shoot{
 	width:78px;
 	height:78px;
 	position:relative;
 	top:-7px;
+}
+
+.resultsContainer{
+
+/*display: inline-block;*/
+	margin: 20px;
+	border: 5px solid red;
 }
 </style>
 
@@ -159,8 +205,14 @@ body{
 		   <div class="btn-holder">
 				<button	 class= "btn" id= "newGolf">New Golf Session</button>
 				<button class= "btn" id="start" disabled>Start</button>
-				<button class= "btn" id="stop" disabled="">Stop</button>                  
+				<button class= "btn" id="stop" disabled="">Stop</button>
+				<button class= "btn" id="end" disabled="">Save Session</button>                     
 		   </div>
+
+	 </div>
+	 <div class="resultsContainer">
+	 <h2>Session Results</h2>
+	 	<p>Hello</p>
 
 	 </div>  
 
